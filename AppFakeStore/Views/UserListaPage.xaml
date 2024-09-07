@@ -9,20 +9,20 @@
              Title="{Binding Title}">
 
     <RefreshView Command="{Binding GetUsersCommand}" IsRefreshing="{Binding IsRefreshing}">
-        <CollectionView Grid.Row="1"
+        <CollectionView 
                     ItemsSource="{Binding Users}"
                     SelectionMode="Single"
                     SelectedItem="{Binding UserSeleccionado}"
                     SelectionChangedCommand="{Binding GoToDetailCommand}"> 
             <CollectionView.EmptyView>
                 <StackLayout Padding="100">
-                    <Image Source="not_found.jpg" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Image Source="cargando.gif" HorizontalOptions="Center" VerticalOptions="Center"  WidthRequest="50" HeightRequest="50"  IsAnimationPlaying="True"/>
                 </StackLayout>
             </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:User">
-                    <StackLayout>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" MaximumWidthRequest="320">
                         <Frame BackgroundColor="#DADADA" CornerRadius="10" Padding="0" Margin="5">
                             <Grid>
                                 <Grid.ColumnDefinitions>

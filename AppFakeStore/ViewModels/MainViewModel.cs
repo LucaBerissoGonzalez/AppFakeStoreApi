@@ -17,6 +17,12 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    public async Task GoToCartLista()
+    {
+        await Application.Current.MainPage.Navigation.PushAsync(new CartListaPage());
+    }
+
+    [RelayCommand]
     public async Task GoToUserLista()
     {
         await Application.Current.MainPage.Navigation.PushAsync(new UserListaPage());
@@ -25,23 +31,34 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     public async Task GoToAcerca()
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new AcercaPage());
+        await Application.Current.MainPage.Navigation.PushAsync(new AboutView());
+    }
+
+    [RelayCommand]
+    public async Task CerrarSesion()
+    {
+        bool answer = await Application.Current.MainPage.DisplayAlert("Cerrar Sesión", "¿Desea terminar la sesión?", "Aceptar", "Cancelar");
+        if (answer)
+        {
+
+
+            await Application.Current.MainPage.Navigation.PopToRootAsync();
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+
+
+        }
+
+
     }
 
     [RelayCommand]
     public async Task Exit()
     {
-        bool answer = await Application.Current.MainPage.DisplayAlert("Salir", "¿Desea terminar la sesión y salir?", "Aceptar", "Cancelar");
-        //if (answer)
-        //{
-       
+        bool answer = await Application.Current.MainPage.DisplayAlert("Salir", "¿Desea Salir de la Aplicación?", "Aceptar", "Cancelar");
+        if (answer)
+        {
+            Application.Current.Quit();
 
-        await Application.Current.MainPage.Navigation.PopToRootAsync();
-        await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
-        
-
-        //}
-
-
+        }
     }
 }

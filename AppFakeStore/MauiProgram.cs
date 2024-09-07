@@ -22,16 +22,22 @@ namespace AppFakeStore
             builder.Services.AddSingleton<ILoginService, LoginService>();
             builder.Services.AddSingleton<IProductoService, ProductoService>();
             builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddSingleton<ICartService, CartService>();
 
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ProductoListaViewModel>();
             builder.Services.AddTransient<UserListaViewModel>();
             builder.Services.AddTransient<UserDetalleViewModel>();
+            builder.Services.AddTransient<CartListaViewModel>();
 
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<ProductoListaPage>();
+            builder.Services.AddTransient<CartListaPage>();
             builder.Services.AddTransient<UserListaPage>();
             builder.Services.AddTransient<UserDetallePage>();
+           
+
+           
 
             //Cuando pasabas el objeto completo, no necesitabas registrar el servicio en MauiProgram porque estabas creando y
             //pasando las instancias manualmente. Sin embargo, al pasar solo el ID y cargar los detalles del usuario desde la API,

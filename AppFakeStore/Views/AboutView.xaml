@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppFakeStore.Views.AboutView"
+             Background="White"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowSpacing="5" ColumnSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Button to go back -->
+            <RowDefinition Height="auto" />
+            <!-- Profile Image and Name -->
+            <RowDefinition Height="*" />
+            
+        </Grid.RowDefinitions>
+
+        <!-- Button to go back -->
+        <Grid Grid.Row="0" Margin="10,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <!-- Ajustar el ancho para la alineación -->
+                <ColumnDefinition Width="300" />
+                <!-- Ancho igual al botón 'Llamar' -->
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Ajustar la colocación del botón de volver -->
+            <Button Grid.Column="1"  
+        BackgroundColor="#DADADA"
+        x:Name="btnPrincipal" 
+        Clicked="btnPrincipal_Clicked"
+        WidthRequest="50"
+        HeightRequest="50"
+        CornerRadius="25"
+        HorizontalOptions="Start">
+                <Button.ImageSource>
+                    <FontImageSource Size="22" Color="Black" FontFamily="MaterialDesignIcons" Glyph="&#xe5c4;"/>
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+
+
+
+        <!-- Profile Image and Name -->
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="0,20">
+            <Image 
+                Source="lucabg.png" 
+                HeightRequest="210"
+                WidthRequest="150"
+                Aspect="AspectFill"
+                HorizontalOptions="Center"
+                Margin="0,0,0,10"/>
+
+            <Label 
+                Text="Luca Berisso Gonzalez" 
+                TextColor="#4a4750"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand"
+                Margin="0,0,0,5"/>
+        </StackLayout>
+
+        <!-- Action Buttons -->
+        <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="15" HorizontalOptions="Center" Padding="0,10">
+            <Button 
+                TextColor="Black"
+                BackgroundColor="#DADADA"
+                Text="Llamar" 
+                FontSize="15"
+                WidthRequest="125"
+                HeightRequest="37"
+                x:Name="btnLlamar" 
+                Clicked="btnLlamar_Clicked"
+                CornerRadius="25"/>
+
+            <Button 
+                TextColor="Black"
+                BackgroundColor="#DADADA"
+                Text="Enviar Mail" 
+                FontSize="15"
+                WidthRequest="125"
+                HeightRequest="37"
+                x:Name="btnEnviarMail" 
+                Clicked="btnEnviarMail_Clicked"
+                CornerRadius="25"/>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

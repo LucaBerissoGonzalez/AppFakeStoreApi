@@ -58,6 +58,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <None Remove="Resources\Images\cart.png" />
+	  <None Remove="Resources\Images\lucabg.png" />
 	  <None Remove="Resources\Images\not_found.jpg" />
 	  <None Remove="Resources\Images\ubicacion.gif" />
 	  <None Remove="Resources\Images\user_solid.png" />
@@ -71,7 +73,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AcercaPage.xaml">
+	  <MauiXaml Update="Views\AboutView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CartListaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">

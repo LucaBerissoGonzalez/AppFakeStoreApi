@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppFakeStore.Views.CartListaPage"
+             xmlns:vm="clr-namespace:AppFakeStore.ViewModels"
+             xmlns:model="clr-namespace:AppFakeStore.Models"
+             xmlns:local="clr-namespace:AppFakeStore.Utils"
+             x:DataType="vm:CartListaViewModel"
+             Title="{Binding Title}">
+    <RefreshView Command="{Binding GetCartsCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <CollectionView Grid.Row="1"
+                 ItemsSource="{Binding Carts}"
+                 SelectionMode="Single">
+
+            <CollectionView.EmptyView>
+                <StackLayout Padding="100">
+                    <Image Source="cargando.gif" HorizontalOptions="Center" VerticalOptions="Center"  WidthRequest="50" HeightRequest="50"  IsAnimationPlaying="True"/>
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Cart">
+                    <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" MaximumWidthRequest="320">
+                        <Frame BackgroundColor="#DADADA" CornerRadius="10" Padding="0" Margin="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+
+
+                                </Grid.ColumnDefinitions>
+                                <Image Source="cart.png" Grid.Column="0" WidthRequest="35" HeightRequest="35" Margin="10,0,0,0"/>
+                                <BoxView Grid.Column="1" WidthRequest="4" Color="White" VerticalOptions="Fill" Margin="10,0,0,0"/>
+                                <StackLayout Grid.Column="3"  HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,10">
+                                    <Grid Padding="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="CarritoId:" Grid.Column="0" HorizontalOptions="End" Padding="10,0"/>
+                                        <Label Text="{Binding Id}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    </Grid>
+                                    <Grid Padding="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="UsuarioId:" Grid.Column="0" HorizontalOptions="End" Padding="10,0"/>
+                                        <Label Text="{Binding UserId}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    </Grid>
+                                    <Grid Padding="0,10,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="Fecha:" Grid.Column="0" HorizontalOptions="End" Padding="10,0"/>
+                                        <Label Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                    </Grid>
+                                    <CollectionView ItemsSource="{Binding Products}" Grid.Column="0">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="model:Articulo">
+                                                <StackLayout>
+                                                    <Frame BackgroundColor="White" CornerRadius="10" Padding="0" Margin="5" HorizontalOptions="Start">
+                                                        <StackLayout VerticalOptions="Center" >
+                                                            <Grid Padding="0,5,0,5">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="100"/>
+                                                                    <ColumnDefinition Width="80"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label Text="ProductoId:" Grid.Column="0" HorizontalOptions="End" Padding="10,0"/>
+                                                                <Label Text="{Binding ProductId}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                                            </Grid>
+                                                            <Grid Padding="0,5,0,5">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="100"/>
+                                                                    <ColumnDefinition Width="80"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label Text="Cantidad:" Grid.Column="0" HorizontalOptions="End" Padding="10,0"/>
+                                                                <Label Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                                            </Grid>
+                                                        </StackLayout>
+                                                    </Frame>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
+
+
+

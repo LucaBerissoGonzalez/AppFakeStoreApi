@@ -4,52 +4,74 @@
              x:Class="AppFakeStore.Views.ProductoListaPage"
              xmlns:vm="clr-namespace:AppFakeStore.ViewModels"
              xmlns:model="clr-namespace:AppFakeStore.Models"
+             xmlns:models="clr-namespace:AppFakeStore.Models"
              x:DataType="vm:ProductoListaViewModel"
              Title="{Binding Title}">
     
    <!--2 da clase -->
-    
-    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto" RowSpacing="0">
+    <RefreshView Command="{Binding GetProductosCommand}" IsRefreshing="{Binding IsRefreshing}">
 
-        <RefreshView Grid.ColumnSpan="2" Command="{Binding GetProductosCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <CollectionView 
+                    ItemsSource="{Binding Productos}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding ProductoSeleccionado}"
+                    SelectionChangedCommand="{Binding GoToDetailCommand}">
+            <CollectionView.EmptyView>
+                <StackLayout Padding="100">
+                    <Image Source="cargando.gif" HorizontalOptions="Center" VerticalOptions="Center"  WidthRequest="50" HeightRequest="50"  IsAnimationPlaying="True"/>
+                </StackLayout>
+            </CollectionView.EmptyView>
 
-            <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Productos}"
-                        SelectionMode="Single"
-                        SelectedItem="{Binding ProductoSeleccionado}"
-                        SelectionChangedCommand="{Binding GoToDetailCommand}">
-                <CollectionView.EmptyView>
-                    <StackLayout Padding="100">
-                        <Image Source="not_found.jpg" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Producto">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" MaximumWidthRequest="350">
+                        <Frame BackgroundColor="#DADADA" CornerRadius="10" Padding="0" Margin="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame CornerRadius="20" Grid.Column="0" Margin="5,10,5,10" Padding="0" WidthRequest="100" HeightRequest="100">
+                                    <Image Source="{Binding image}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0" WidthRequest="80" HeightRequest="80"/>
+                                </Frame>
+                                <BoxView Grid.Column="1" WidthRequest="4" Color="White" VerticalOptions="Fill" Margin="0,0,5,0"/>
+                                <StackLayout Grid.Column="2" VerticalOptions="Center" Margin="0,10,0,10">
+                                    <Grid Margin="10,0,10,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding title}" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid Margin="10,20,10,10" VerticalOptions="End">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="$" TextColor="Green" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center"/>
+                                            <Label Text="{Binding price}" TextColor="Green" Grid.Column="1" HorizontalOptions="Start"/>
+                                            <Label  Text="{x:Static models:MaterialIcons.Star}" FontSize="20" TextColor="Blue"
+                                                    FontFamily="MaterialDesignIcons" Grid.Column="2" HorizontalOptions="End"/>
+                                            <Label Text="{Binding rating.rate}" TextColor="#3483fa" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="8,0,0,0"/>
+                                        </Grid>
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
                     </StackLayout>
-                </CollectionView.EmptyView>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Producto">
-                        <Grid 
-                            ColumnDefinitions=".3*,.7*"
-                            Margin="10" 
-                            ColumnSpacing="10" 
-                            RowSpacing="10" 
-                            RowDefinitions="Auto,*">
-                           
-                            <Image Grid.Column="0"
-                               Source="{Binding image}"
-                               WidthRequest="80"
-                               HeightRequest="80"
-                               Aspect="AspectFit"/>
-
-                            <Label Grid.Column="1" 
-                               Text="{Binding title}"
-                               VerticalOptions="Center"
-                               TextColor="Blue"/>
-                            
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
 
-            </CollectionView>
-        </RefreshView>
-    </Grid>
+        </CollectionView>
+    </RefreshView>
+
+
+
+
 </ContentPage>
