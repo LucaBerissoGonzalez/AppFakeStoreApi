@@ -11,7 +11,7 @@ namespace AppFakeStore
             InitializeComponent();            
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new MainPage());
-            //ShowLoginPage();
+            ShowLoginPage();
         }
 
         private async void ShowLoginPage()

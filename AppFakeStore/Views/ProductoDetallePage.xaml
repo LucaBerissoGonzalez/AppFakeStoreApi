@@ -7,7 +7,6 @@
              x:DataType="vm:ProductoDetalleViewModel"
              Title="{Binding Title}">
     <ScrollView>
-
         <StackLayout>
             <Frame BackgroundColor="#DADADA" CornerRadius="10" Padding="0" Margin="5" HorizontalOptions="Center">
                 <Grid>

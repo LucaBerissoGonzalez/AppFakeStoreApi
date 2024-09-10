@@ -14,7 +14,7 @@
                 ColumnDefinitions="*,*" 
                 RowDefinitions="*,*,*,*">
 
-                <Label Text="MENU DE OPCIONES" Grid.ColumnSpan="2" Grid.Row="0" />
+                <Label Text="MENU DE OPCIONES" TextColor="White" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,0,0,20"/>
 
                 <Button ContentLayout="Top, 5" Grid.Row="1" Text="Productos" TextColor="Black" BackgroundColor="#DADADA" HeightRequest="85" Command="{Binding GoToProductoListaCommand}">
                     <Button.ImageSource>
